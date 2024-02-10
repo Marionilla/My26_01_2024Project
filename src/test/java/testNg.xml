@@ -1,0 +1,10 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+
+<suite name="Parallel Testing Suite" parallel="methods">
+    <test name="FilterTest" thread-count="2">
+        <classes>
+            <class name="test.FilterTest" />
+        </classes>
+    </test>
+
+</suite>
