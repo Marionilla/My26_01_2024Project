@@ -1,30 +1,29 @@
 package driver;
-
-
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.firefox.FirefoxDriver;
 
 public class DriverSingleton {
 
-    private static WebDriver driver;
+    private static ThreadLocal<WebDriver> driver = new ThreadLocal<>();
 
 
     private DriverSingleton(){}
 
-    public static WebDriver getDriver(){
-        if (driver == null) {
+    public static synchronized WebDriver getDriver(){
+        if (driver.get() == null) {
             WebDriverManager.chromedriver().setup();
-            driver = new ChromeDriver();
+            WebDriver webDriver = new ChromeDriver();
+            driver.set(webDriver);
+            webDriver.navigate().to("https://www.saucedemo.com/");
         }
-        return driver;
+        return driver.get();
     }
 
     public static void closeDriver() {
-        if (driver != null) {
-            driver.quit();
-            driver = null;
+        if (driver.get() != null) {
+            driver.get().quit();
+            driver.remove();
         }
     }
 }
