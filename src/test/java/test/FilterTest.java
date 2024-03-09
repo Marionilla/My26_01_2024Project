@@ -18,8 +18,9 @@ public class FilterTest extends Conditions {
 
     @Test
    public void successfulLogin() {
-        String usernameOne = TestDataReader.getProperty("usernameTwo");
-        String passwordOne = TestDataReader.getProperty("passwordTwo");
+        TestDataReader reader = new TestDataReader();
+        String usernameOne = reader.getProperty("usernameTwo");
+        String passwordOne = reader.getProperty("passwordTwo");
         User testUserOne = new User(usernameOne, passwordOne);
         new LoginPage()
                 .login(testUserOne);
@@ -34,8 +35,9 @@ public class FilterTest extends Conditions {
     @Test
     public void filterTest() {
         try {
-        String username = TestDataReader.getProperty("usernameOne");
-        String password = TestDataReader.getProperty("passwordOne");
+            TestDataReader readerTwo = new TestDataReader();
+        String username = readerTwo.getProperty("usernameOne");
+        String password = readerTwo.getProperty("passwordOne");
         User testUserTwo = new User(username, password);
         new LoginPage()
                 .login(testUserTwo)

@@ -4,7 +4,7 @@ import java.util.Properties;
 public class TestDataReader {
     private static Properties properties;
 
-    private TestDataReader() {
+    public TestDataReader() {
         properties = new Properties();
         try (InputStream inputStream = TestDataReader .class.getResourceAsStream("/data.properties")) {
             properties.load(inputStream);
@@ -13,7 +13,7 @@ public class TestDataReader {
         }
     }
 
-    public static String getProperty(String key) {
+    public String getProperty(String key) {
         return properties.getProperty(key);
     }
 

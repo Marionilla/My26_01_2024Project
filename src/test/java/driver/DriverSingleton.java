@@ -15,7 +15,7 @@ public class DriverSingleton {
             WebDriverManager.chromedriver().setup();
             WebDriver webDriver = new ChromeDriver();
             driver.set(webDriver);
-            webDriver.navigate().to("https://www.saucedemo.com/");
+          //  webDriver.navigate().to("https://www.saucedemo.com/");
         }
         return driver.get();
     }
